@@ -11,7 +11,7 @@ class TreeTest {
 		val input = "out << (3 + 8) + 2"
 		val parsed = FlarscriptFacade.parse(input)
 
-		assertTrue("There must be no errors:", parsed.errors.isEmpty())
+		assertTrue("There must be no errors", parsed.errors.isEmpty())
 		assertNotNull(parsed.script, "Script must not be null")
 
 		assertEquals(

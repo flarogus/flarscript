@@ -5,28 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a5d2470-d149-47f8-a717-ade7ac630d5d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinScripting.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flarscript/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/FlarscriptFacade.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/FlarscriptParseResult.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/AbstractTreeNodes.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/TreeConverters.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flarscript/src/test/kotlin/TreeTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/grammar/FlarscriptLexer.g4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/grammar/FlarscriptParser.g4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/executor/FlarscriptExecutor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flarscript/src/test/kotlin/BehaviourTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/FlarscriptParseResult.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/FlarscriptParseResult.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/AbstractTreeNodes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/AbstractTreeNodes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/TreeConverters.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/TreeConverters.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flarscript/src/test/kotlin/TreeTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/test/kotlin/TreeTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/FlarscriptParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/FlarscriptParser.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParserBaseListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParserBaseVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParserListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParserVisitor.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +62,7 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="flarscript" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
+                <item name="verification" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -122,7 +115,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+    "settings.editor.selected.configurable": "inlay.hints"
   },
   "keyToStringList": {
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
@@ -141,7 +134,53 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.TreeTest (1)">
+  <component name="RunManager" selected="Gradle.BehaviourTest.a simple script prints the correct result (1)">
+    <configuration name="BehaviourTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":flarscript:test" />
+            <option value="--tests" />
+            <option value="&quot;flarscript.BehaviourTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="BehaviourTest.a simple script prints the correct result (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":flarscript:test" />
+            <option value="--tests" />
+            <option value="&quot;flarscript.BehaviourTest.a simple script prints the correct result&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="TreeTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -209,19 +248,13 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="build.gradle.kts" type="KotlinStandaloneScriptRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <module name="flarscript" />
-      <option name="filePath" value="$PROJECT_DIR$/grammar/build.gradle.kts" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.BehaviourTest.a simple script prints the correct result (1)" />
+        <item itemvalue="Gradle.BehaviourTest" />
         <item itemvalue="Gradle.TreeTest (1)" />
         <item itemvalue="Gradle.TreeTest.simple tree constructed correctly (1)" />
         <item itemvalue="Gradle.flarscript [jar]" />
-        <item itemvalue="Kotlin script.build.gradle.kts" />
       </list>
     </recent_temporary>
   </component>

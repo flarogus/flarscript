@@ -1,5 +1,6 @@
 package flarscript.tree
 
+import flarscript.grammar.FlarscriptLexer
 import flarscript.grammar.FlarscriptParser.*
 
 fun FlarscriptContext.toAst() = Flarscript(statement().map { it.toAst() })
@@ -12,14 +13,16 @@ fun StatementContext.toAst() = when (this) {
 }
 
 fun ExpressionContext.toAst(): Expression = when (this) {
-	is OperationExpressionContext -> when (operation()) {
-		is PlusOpContext -> PlusExpression(left.toAst(), right.toAst())
-		is MinusOpContext -> MinusExpression(left.toAst(), right.toAst())
-		is MultiplyOpContext -> MultiplyExpression(left.toAst(), right.toAst())
-		is DivideOpContext -> DivideExpression(left.toAst(), right.toAst())
-		is ModuloOpContext -> ModuloExpression(left.toAst(), right.toAst())
-
-		else -> TODO("Operation type not supported: ${this::class.simpleName}")
+	is PlusOrMinusExpressionContext -> when (operator.text) {
+		"+" -> PlusExpression(left.toAst(), right.toAst())
+		"-" -> MinusExpression(left.toAst(), right.toAst())
+		else -> TODO() //unreachable
+	}
+	is MultiplyOrDivideExpressionContext -> when (operator.text) {
+		"*" -> MultiplyExpression(left.toAst(), right.toAst())
+		"/" -> DivideExpression(left.toAst(), right.toAst())
+		"%" -> ModuloExpression(left.toAst(), right.toAst())
+		else -> TODO() //unreachable
 	}
 	is BracketExpressionContext -> BracketExpression(expression().toAst())
 	is NumberLiteralContext -> NumberLiteral(value.text.toDouble())

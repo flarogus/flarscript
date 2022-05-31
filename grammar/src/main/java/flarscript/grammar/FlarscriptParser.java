@@ -22,11 +22,10 @@ public class FlarscriptParser extends Parser {
 		ASTERISK=14, PERCENT=15, LEFT_TRANSFER=16, SEMICOLON=17, SINGLE_LINE_COMMENT=18, 
 		MULTILINE_COMMENT=19;
 	public static final int
-		RULE_flarscript = 0, RULE_statement = 1, RULE_expression = 2, RULE_operation = 3, 
-		RULE_ends = 4;
+		RULE_flarscript = 0, RULE_statement = 1, RULE_expression = 2, RULE_ends = 3;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"flarscript", "statement", "expression", "operation", "ends"
+			"flarscript", "statement", "expression", "ends"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -118,19 +117,6 @@ public class FlarscriptParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_flarscript; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).enterFlarscript(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).exitFlarscript(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof FlarscriptParserVisitor ) return ((FlarscriptParserVisitor<? extends T>)visitor).visitFlarscript(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final FlarscriptContext flarscript() throws RecognitionException {
@@ -140,37 +126,37 @@ public class FlarscriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(21);
+			setState(19);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << DECIMAL) | (1L << INTEGER) | (1L << STRING_DOUBLE) | (1L << STRING_SINGLE) | (1L << STRING_BACK) | (1L << KEY_OUT) | (1L << LPAREN))) != 0)) {
 				{
 				{
-				setState(10);
+				setState(8);
 				statement();
-				setState(17);
+				setState(15);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
 				case EOF:
 					{
-					setState(11);
+					setState(9);
 					match(EOF);
 					}
 					break;
 				case NEWLINE:
 				case SEMICOLON:
 					{
-					setState(13); 
+					setState(11); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 					do {
 						{
 						{
-						setState(12);
+						setState(10);
 						ends();
 						}
 						}
-						setState(15); 
+						setState(13); 
 						_errHandler.sync(this);
 						_la = _input.LA(1);
 					} while ( _la==NEWLINE || _la==SEMICOLON );
@@ -181,7 +167,7 @@ public class FlarscriptParser extends Parser {
 				}
 				}
 				}
-				setState(23);
+				setState(21);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -214,19 +200,6 @@ public class FlarscriptParser extends Parser {
 			return getRuleContext(ExpressionContext.class,0);
 		}
 		public SingleExpressionContext(StatementContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).enterSingleExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).exitSingleExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof FlarscriptParserVisitor ) return ((FlarscriptParserVisitor<? extends T>)visitor).visitSingleExpression(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class PrintStatementContext extends StatementContext {
 		public TerminalNode KEY_OUT() { return getToken(FlarscriptParser.KEY_OUT, 0); }
@@ -235,26 +208,13 @@ public class FlarscriptParser extends Parser {
 			return getRuleContext(ExpressionContext.class,0);
 		}
 		public PrintStatementContext(StatementContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).enterPrintStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).exitPrintStatement(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof FlarscriptParserVisitor ) return ((FlarscriptParserVisitor<? extends T>)visitor).visitPrintStatement(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final StatementContext statement() throws RecognitionException {
 		StatementContext _localctx = new StatementContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_statement);
 		try {
-			setState(28);
+			setState(26);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case DECIMAL:
@@ -266,7 +226,7 @@ public class FlarscriptParser extends Parser {
 				_localctx = new SingleExpressionContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(24);
+				setState(22);
 				expression(0);
 				}
 				break;
@@ -274,11 +234,11 @@ public class FlarscriptParser extends Parser {
 				_localctx = new PrintStatementContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(25);
+				setState(23);
 				match(KEY_OUT);
-				setState(26);
+				setState(24);
 				match(LEFT_TRANSFER);
-				setState(27);
+				setState(25);
 				expression(0);
 				}
 				break;
@@ -315,19 +275,20 @@ public class FlarscriptParser extends Parser {
 		}
 		public TerminalNode RPAREN() { return getToken(FlarscriptParser.RPAREN, 0); }
 		public BracketExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).enterBracketExpression(this);
+	}
+	public static class PlusOrMinusExpressionContext extends ExpressionContext {
+		public ExpressionContext left;
+		public Token operator;
+		public ExpressionContext right;
+		public List<ExpressionContext> expression() {
+			return getRuleContexts(ExpressionContext.class);
 		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).exitBracketExpression(this);
+		public ExpressionContext expression(int i) {
+			return getRuleContext(ExpressionContext.class,i);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof FlarscriptParserVisitor ) return ((FlarscriptParserVisitor<? extends T>)visitor).visitBracketExpression(this);
-			else return visitor.visitChildren(this);
-		}
+		public TerminalNode PLUS() { return getToken(FlarscriptParser.PLUS, 0); }
+		public TerminalNode MINUS() { return getToken(FlarscriptParser.MINUS, 0); }
+		public PlusOrMinusExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 	}
 	public static class StringLiteralContext extends ExpressionContext {
 		public Token value;
@@ -335,65 +296,27 @@ public class FlarscriptParser extends Parser {
 		public TerminalNode STRING_SINGLE() { return getToken(FlarscriptParser.STRING_SINGLE, 0); }
 		public TerminalNode STRING_BACK() { return getToken(FlarscriptParser.STRING_BACK, 0); }
 		public StringLiteralContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).enterStringLiteral(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).exitStringLiteral(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof FlarscriptParserVisitor ) return ((FlarscriptParserVisitor<? extends T>)visitor).visitStringLiteral(this);
-			else return visitor.visitChildren(this);
-		}
 	}
-	public static class OperationExpressionContext extends ExpressionContext {
+	public static class MultiplyOrDivideExpressionContext extends ExpressionContext {
 		public ExpressionContext left;
+		public Token operator;
 		public ExpressionContext right;
-		public OperationContext operation() {
-			return getRuleContext(OperationContext.class,0);
-		}
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
 		}
 		public ExpressionContext expression(int i) {
 			return getRuleContext(ExpressionContext.class,i);
 		}
-		public OperationExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).enterOperationExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).exitOperationExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof FlarscriptParserVisitor ) return ((FlarscriptParserVisitor<? extends T>)visitor).visitOperationExpression(this);
-			else return visitor.visitChildren(this);
-		}
+		public TerminalNode ASTERISK() { return getToken(FlarscriptParser.ASTERISK, 0); }
+		public TerminalNode SLASH() { return getToken(FlarscriptParser.SLASH, 0); }
+		public TerminalNode PERCENT() { return getToken(FlarscriptParser.PERCENT, 0); }
+		public MultiplyOrDivideExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 	}
 	public static class NumberLiteralContext extends ExpressionContext {
 		public Token value;
 		public TerminalNode DECIMAL() { return getToken(FlarscriptParser.DECIMAL, 0); }
 		public TerminalNode INTEGER() { return getToken(FlarscriptParser.INTEGER, 0); }
 		public NumberLiteralContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).enterNumberLiteral(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).exitNumberLiteral(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof FlarscriptParserVisitor ) return ((FlarscriptParserVisitor<? extends T>)visitor).visitNumberLiteral(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ExpressionContext expression() throws RecognitionException {
@@ -412,7 +335,7 @@ public class FlarscriptParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(37);
+			setState(35);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case LPAREN:
@@ -421,11 +344,11 @@ public class FlarscriptParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(31);
+				setState(29);
 				match(LPAREN);
-				setState(32);
+				setState(30);
 				expression(0);
-				setState(33);
+				setState(31);
 				match(RPAREN);
 				}
 				break;
@@ -435,7 +358,7 @@ public class FlarscriptParser extends Parser {
 				_localctx = new NumberLiteralContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(35);
+				setState(33);
 				((NumberLiteralContext)_localctx).value = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !(_la==DECIMAL || _la==INTEGER) ) {
@@ -455,7 +378,7 @@ public class FlarscriptParser extends Parser {
 				_localctx = new StringLiteralContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(36);
+				setState(34);
 				((StringLiteralContext)_localctx).value = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << STRING_DOUBLE) | (1L << STRING_SINGLE) | (1L << STRING_BACK))) != 0)) ) {
@@ -474,28 +397,65 @@ public class FlarscriptParser extends Parser {
 			_ctx.stop = _input.LT(-1);
 			setState(45);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					{
-					_localctx = new OperationExpressionContext(new ExpressionContext(_parentctx, _parentState));
-					((OperationExpressionContext)_localctx).left = _prevctx;
-					pushNewRecursionContext(_localctx, _startState, RULE_expression);
-					setState(39);
-					if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
-					setState(40);
-					operation();
-					setState(41);
-					((OperationExpressionContext)_localctx).right = expression(5);
+					setState(43);
+					_errHandler.sync(this);
+					switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
+					case 1:
+						{
+						_localctx = new MultiplyOrDivideExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((MultiplyOrDivideExpressionContext)_localctx).left = _prevctx;
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
+						setState(37);
+						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
+						setState(38);
+						((MultiplyOrDivideExpressionContext)_localctx).operator = _input.LT(1);
+						_la = _input.LA(1);
+						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << SLASH) | (1L << ASTERISK) | (1L << PERCENT))) != 0)) ) {
+							((MultiplyOrDivideExpressionContext)_localctx).operator = (Token)_errHandler.recoverInline(this);
+						}
+						else {
+							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+							_errHandler.reportMatch(this);
+							consume();
+						}
+						setState(39);
+						((MultiplyOrDivideExpressionContext)_localctx).right = expression(3);
+						}
+						break;
+					case 2:
+						{
+						_localctx = new PlusOrMinusExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((PlusOrMinusExpressionContext)_localctx).left = _prevctx;
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
+						setState(40);
+						if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
+						setState(41);
+						((PlusOrMinusExpressionContext)_localctx).operator = _input.LT(1);
+						_la = _input.LA(1);
+						if ( !(_la==PLUS || _la==MINUS) ) {
+							((PlusOrMinusExpressionContext)_localctx).operator = (Token)_errHandler.recoverInline(this);
+						}
+						else {
+							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+							_errHandler.reportMatch(this);
+							consume();
+						}
+						setState(42);
+						((PlusOrMinusExpressionContext)_localctx).right = expression(2);
+						}
+						break;
 					}
 					} 
 				}
 				setState(47);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
 			}
 			}
 		}
@@ -510,165 +470,6 @@ public class FlarscriptParser extends Parser {
 		return _localctx;
 	}
 
-	public static class OperationContext extends ParserRuleContext {
-		public OperationContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_operation; }
-	 
-		public OperationContext() { }
-		public void copyFrom(OperationContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	public static class MinusOpContext extends OperationContext {
-		public TerminalNode MINUS() { return getToken(FlarscriptParser.MINUS, 0); }
-		public MinusOpContext(OperationContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).enterMinusOp(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).exitMinusOp(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof FlarscriptParserVisitor ) return ((FlarscriptParserVisitor<? extends T>)visitor).visitMinusOp(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ModuloOpContext extends OperationContext {
-		public TerminalNode PERCENT() { return getToken(FlarscriptParser.PERCENT, 0); }
-		public ModuloOpContext(OperationContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).enterModuloOp(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).exitModuloOp(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof FlarscriptParserVisitor ) return ((FlarscriptParserVisitor<? extends T>)visitor).visitModuloOp(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class PlusOpContext extends OperationContext {
-		public TerminalNode PLUS() { return getToken(FlarscriptParser.PLUS, 0); }
-		public PlusOpContext(OperationContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).enterPlusOp(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).exitPlusOp(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof FlarscriptParserVisitor ) return ((FlarscriptParserVisitor<? extends T>)visitor).visitPlusOp(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DivideOpContext extends OperationContext {
-		public TerminalNode SLASH() { return getToken(FlarscriptParser.SLASH, 0); }
-		public DivideOpContext(OperationContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).enterDivideOp(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).exitDivideOp(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof FlarscriptParserVisitor ) return ((FlarscriptParserVisitor<? extends T>)visitor).visitDivideOp(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MultiplyOpContext extends OperationContext {
-		public TerminalNode ASTERISK() { return getToken(FlarscriptParser.ASTERISK, 0); }
-		public MultiplyOpContext(OperationContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).enterMultiplyOp(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).exitMultiplyOp(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof FlarscriptParserVisitor ) return ((FlarscriptParserVisitor<? extends T>)visitor).visitMultiplyOp(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final OperationContext operation() throws RecognitionException {
-		OperationContext _localctx = new OperationContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_operation);
-		try {
-			setState(53);
-			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case SLASH:
-				_localctx = new DivideOpContext(_localctx);
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(48);
-				match(SLASH);
-				}
-				break;
-			case ASTERISK:
-				_localctx = new MultiplyOpContext(_localctx);
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(49);
-				match(ASTERISK);
-				}
-				break;
-			case PERCENT:
-				_localctx = new ModuloOpContext(_localctx);
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(50);
-				match(PERCENT);
-				}
-				break;
-			case PLUS:
-				_localctx = new PlusOpContext(_localctx);
-				enterOuterAlt(_localctx, 4);
-				{
-				setState(51);
-				match(PLUS);
-				}
-				break;
-			case MINUS:
-				_localctx = new MinusOpContext(_localctx);
-				enterOuterAlt(_localctx, 5);
-				{
-				setState(52);
-				match(MINUS);
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
 	public static class EndsContext extends ParserRuleContext {
 		public TerminalNode SEMICOLON() { return getToken(FlarscriptParser.SEMICOLON, 0); }
 		public TerminalNode NEWLINE() { return getToken(FlarscriptParser.NEWLINE, 0); }
@@ -676,29 +477,16 @@ public class FlarscriptParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_ends; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).enterEnds(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof FlarscriptParserListener ) ((FlarscriptParserListener)listener).exitEnds(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof FlarscriptParserVisitor ) return ((FlarscriptParserVisitor<? extends T>)visitor).visitEnds(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final EndsContext ends() throws RecognitionException {
 		EndsContext _localctx = new EndsContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_ends);
+		enterRule(_localctx, 6, RULE_ends);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(55);
+			setState(48);
 			_la = _input.LA(1);
 			if ( !(_la==NEWLINE || _la==SEMICOLON) ) {
 			_errHandler.recoverInline(this);
@@ -731,51 +519,49 @@ public class FlarscriptParser extends Parser {
 	private boolean expression_sempred(ExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 4);
+			return precpred(_ctx, 2);
+		case 1:
+			return precpred(_ctx, 1);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u0013:\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
-		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0001"+
-		"\u0000\u0001\u0000\u0001\u0000\u0004\u0000\u000e\b\u0000\u000b\u0000\f"+
-		"\u0000\u000f\u0003\u0000\u0012\b\u0000\u0005\u0000\u0014\b\u0000\n\u0000"+
-		"\f\u0000\u0017\t\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
-		"\u0003\u0001\u001d\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002"+
-		"\u0001\u0002\u0001\u0002\u0001\u0002\u0003\u0002&\b\u0002\u0001\u0002"+
-		"\u0001\u0002\u0001\u0002\u0001\u0002\u0005\u0002,\b\u0002\n\u0002\f\u0002"+
-		"/\t\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003"+
-		"\u0003\u00036\b\u0003\u0001\u0004\u0001\u0004\u0001\u0004\u0000\u0001"+
-		"\u0004\u0005\u0000\u0002\u0004\u0006\b\u0000\u0003\u0001\u0000\u0003\u0004"+
-		"\u0001\u0000\u0005\u0007\u0002\u0000\u0001\u0001\u0011\u0011?\u0000\u0015"+
-		"\u0001\u0000\u0000\u0000\u0002\u001c\u0001\u0000\u0000\u0000\u0004%\u0001"+
-		"\u0000\u0000\u0000\u00065\u0001\u0000\u0000\u0000\b7\u0001\u0000\u0000"+
-		"\u0000\n\u0011\u0003\u0002\u0001\u0000\u000b\u0012\u0005\u0000\u0000\u0001"+
-		"\f\u000e\u0003\b\u0004\u0000\r\f\u0001\u0000\u0000\u0000\u000e\u000f\u0001"+
-		"\u0000\u0000\u0000\u000f\r\u0001\u0000\u0000\u0000\u000f\u0010\u0001\u0000"+
-		"\u0000\u0000\u0010\u0012\u0001\u0000\u0000\u0000\u0011\u000b\u0001\u0000"+
-		"\u0000\u0000\u0011\r\u0001\u0000\u0000\u0000\u0012\u0014\u0001\u0000\u0000"+
-		"\u0000\u0013\n\u0001\u0000\u0000\u0000\u0014\u0017\u0001\u0000\u0000\u0000"+
-		"\u0015\u0013\u0001\u0000\u0000\u0000\u0015\u0016\u0001\u0000\u0000\u0000"+
-		"\u0016\u0001\u0001\u0000\u0000\u0000\u0017\u0015\u0001\u0000\u0000\u0000"+
-		"\u0018\u001d\u0003\u0004\u0002\u0000\u0019\u001a\u0005\b\u0000\u0000\u001a"+
-		"\u001b\u0005\u0010\u0000\u0000\u001b\u001d\u0003\u0004\u0002\u0000\u001c"+
-		"\u0018\u0001\u0000\u0000\u0000\u001c\u0019\u0001\u0000\u0000\u0000\u001d"+
-		"\u0003\u0001\u0000\u0000\u0000\u001e\u001f\u0006\u0002\uffff\uffff\u0000"+
-		"\u001f \u0005\t\u0000\u0000 !\u0003\u0004\u0002\u0000!\"\u0005\n\u0000"+
-		"\u0000\"&\u0001\u0000\u0000\u0000#&\u0007\u0000\u0000\u0000$&\u0007\u0001"+
-		"\u0000\u0000%\u001e\u0001\u0000\u0000\u0000%#\u0001\u0000\u0000\u0000"+
-		"%$\u0001\u0000\u0000\u0000&-\u0001\u0000\u0000\u0000\'(\n\u0004\u0000"+
-		"\u0000()\u0003\u0006\u0003\u0000)*\u0003\u0004\u0002\u0005*,\u0001\u0000"+
-		"\u0000\u0000+\'\u0001\u0000\u0000\u0000,/\u0001\u0000\u0000\u0000-+\u0001"+
-		"\u0000\u0000\u0000-.\u0001\u0000\u0000\u0000.\u0005\u0001\u0000\u0000"+
-		"\u0000/-\u0001\u0000\u0000\u000006\u0005\r\u0000\u000016\u0005\u000e\u0000"+
-		"\u000026\u0005\u000f\u0000\u000036\u0005\u000b\u0000\u000046\u0005\f\u0000"+
-		"\u000050\u0001\u0000\u0000\u000051\u0001\u0000\u0000\u000052\u0001\u0000"+
-		"\u0000\u000053\u0001\u0000\u0000\u000054\u0001\u0000\u0000\u00006\u0007"+
-		"\u0001\u0000\u0000\u000078\u0007\u0002\u0000\u00008\t\u0001\u0000\u0000"+
-		"\u0000\u0007\u000f\u0011\u0015\u001c%-5";
+		"\u0004\u0001\u00133\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0001\u0000\u0001\u0000\u0001"+
+		"\u0000\u0004\u0000\f\b\u0000\u000b\u0000\f\u0000\r\u0003\u0000\u0010\b"+
+		"\u0000\u0005\u0000\u0012\b\u0000\n\u0000\f\u0000\u0015\t\u0000\u0001\u0001"+
+		"\u0001\u0001\u0001\u0001\u0001\u0001\u0003\u0001\u001b\b\u0001\u0001\u0002"+
+		"\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002"+
+		"\u0003\u0002$\b\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002"+
+		"\u0001\u0002\u0001\u0002\u0005\u0002,\b\u0002\n\u0002\f\u0002/\t\u0002"+
+		"\u0001\u0003\u0001\u0003\u0001\u0003\u0000\u0001\u0004\u0004\u0000\u0002"+
+		"\u0004\u0006\u0000\u0005\u0001\u0000\u0003\u0004\u0001\u0000\u0005\u0007"+
+		"\u0001\u0000\r\u000f\u0001\u0000\u000b\f\u0002\u0000\u0001\u0001\u0011"+
+		"\u00116\u0000\u0013\u0001\u0000\u0000\u0000\u0002\u001a\u0001\u0000\u0000"+
+		"\u0000\u0004#\u0001\u0000\u0000\u0000\u00060\u0001\u0000\u0000\u0000\b"+
+		"\u000f\u0003\u0002\u0001\u0000\t\u0010\u0005\u0000\u0000\u0001\n\f\u0003"+
+		"\u0006\u0003\u0000\u000b\n\u0001\u0000\u0000\u0000\f\r\u0001\u0000\u0000"+
+		"\u0000\r\u000b\u0001\u0000\u0000\u0000\r\u000e\u0001\u0000\u0000\u0000"+
+		"\u000e\u0010\u0001\u0000\u0000\u0000\u000f\t\u0001\u0000\u0000\u0000\u000f"+
+		"\u000b\u0001\u0000\u0000\u0000\u0010\u0012\u0001\u0000\u0000\u0000\u0011"+
+		"\b\u0001\u0000\u0000\u0000\u0012\u0015\u0001\u0000\u0000\u0000\u0013\u0011"+
+		"\u0001\u0000\u0000\u0000\u0013\u0014\u0001\u0000\u0000\u0000\u0014\u0001"+
+		"\u0001\u0000\u0000\u0000\u0015\u0013\u0001\u0000\u0000\u0000\u0016\u001b"+
+		"\u0003\u0004\u0002\u0000\u0017\u0018\u0005\b\u0000\u0000\u0018\u0019\u0005"+
+		"\u0010\u0000\u0000\u0019\u001b\u0003\u0004\u0002\u0000\u001a\u0016\u0001"+
+		"\u0000\u0000\u0000\u001a\u0017\u0001\u0000\u0000\u0000\u001b\u0003\u0001"+
+		"\u0000\u0000\u0000\u001c\u001d\u0006\u0002\uffff\uffff\u0000\u001d\u001e"+
+		"\u0005\t\u0000\u0000\u001e\u001f\u0003\u0004\u0002\u0000\u001f \u0005"+
+		"\n\u0000\u0000 $\u0001\u0000\u0000\u0000!$\u0007\u0000\u0000\u0000\"$"+
+		"\u0007\u0001\u0000\u0000#\u001c\u0001\u0000\u0000\u0000#!\u0001\u0000"+
+		"\u0000\u0000#\"\u0001\u0000\u0000\u0000$-\u0001\u0000\u0000\u0000%&\n"+
+		"\u0002\u0000\u0000&\'\u0007\u0002\u0000\u0000\',\u0003\u0004\u0002\u0003"+
+		"()\n\u0001\u0000\u0000)*\u0007\u0003\u0000\u0000*,\u0003\u0004\u0002\u0002"+
+		"+%\u0001\u0000\u0000\u0000+(\u0001\u0000\u0000\u0000,/\u0001\u0000\u0000"+
+		"\u0000-+\u0001\u0000\u0000\u0000-.\u0001\u0000\u0000\u0000.\u0005\u0001"+
+		"\u0000\u0000\u0000/-\u0001\u0000\u0000\u000001\u0007\u0004\u0000\u0000"+
+		"1\u0007\u0001\u0000\u0000\u0000\u0007\r\u000f\u0013\u001a#+-";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

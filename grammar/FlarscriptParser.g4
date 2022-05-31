@@ -12,18 +12,11 @@ statement
 	;
 
 expression
-	: left=expression operation right=expression #OperationExpression
-	| LPAREN expression RPAREN #BracketExpression
+	: LPAREN expression RPAREN #BracketExpression
 	| value=(DECIMAL | INTEGER) #NumberLiteral
 	| value=(STRING_DOUBLE | STRING_SINGLE | STRING_BACK) #StringLiteral
-	;
-
-operation
-	: SLASH #DivideOp
-	| ASTERISK #MultiplyOp
-	| PERCENT #ModuloOp
-	| PLUS #PlusOp
-	| MINUS #MinusOp
+	| left=expression operator=(ASTERISK | SLASH | PERCENT) right=expression #MultiplyOrDivideExpression
+	| left=expression operator=(PLUS | MINUS) right=expression #PlusOrMinusExpression
 	;
 
 ends : (SEMICOLON | NEWLINE) ;

@@ -2,8 +2,8 @@ package flarscript.tree
 
 interface Node
 
-interface Statement : Node
-interface Expression : Node
+sealed interface Statement : Node
+sealed interface Expression : Node
 
 data class Flarscript(
 	val statements: List<Statement>
@@ -13,7 +13,7 @@ data class NumberLiteral(val value: Double) : Expression
 data class StringLiteral(val value: String) : Expression
 
 // expressions
-interface BinaryExpression : Expression {
+sealed interface BinaryExpression : Expression {
 	val left: Expression
 	val right: Expression
 }
