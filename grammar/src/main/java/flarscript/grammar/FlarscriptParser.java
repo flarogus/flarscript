@@ -19,8 +19,9 @@ public class FlarscriptParser extends Parser {
 	public static final int
 		NEWLINE=1, WH=2, DECIMAL=3, INTEGER=4, STRING_DOUBLE=5, STRING_SINGLE=6, 
 		STRING_BACK=7, KEY_OUT=8, LPAREN=9, RPAREN=10, PLUS=11, MINUS=12, SLASH=13, 
-		ASTERISK=14, PERCENT=15, LEFT_TRANSFER=16, SEMICOLON=17, SINGLE_LINE_COMMENT=18, 
-		MULTILINE_COMMENT=19;
+		ASTERISK=14, PERCENT=15, LEFT_TRANSFER=16, LESS=17, LESS_OR_EQUAL=18, 
+		EQUAL=19, GREATER_OR_EQUAL=20, GREATER=21, SEMICOLON=22, SINGLE_LINE_COMMENT=23, 
+		MULTILINE_COMMENT=24;
 	public static final int
 		RULE_flarscript = 0, RULE_statement = 1, RULE_expression = 2, RULE_ends = 3;
 	private static String[] makeRuleNames() {
@@ -33,7 +34,8 @@ public class FlarscriptParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, null, null, null, null, null, null, null, "'out'", "'('", "')'", 
-			"'+'", "'-'", "'/'", "'*'", "'%'", "'<<'", "';'"
+			"'+'", "'-'", "'/'", "'*'", "'%'", "'<<'", "'<'", "'<='", "'=='", "'>='", 
+			"'>'", "';'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -41,8 +43,8 @@ public class FlarscriptParser extends Parser {
 		return new String[] {
 			null, "NEWLINE", "WH", "DECIMAL", "INTEGER", "STRING_DOUBLE", "STRING_SINGLE", 
 			"STRING_BACK", "KEY_OUT", "LPAREN", "RPAREN", "PLUS", "MINUS", "SLASH", 
-			"ASTERISK", "PERCENT", "LEFT_TRANSFER", "SEMICOLON", "SINGLE_LINE_COMMENT", 
-			"MULTILINE_COMMENT"
+			"ASTERISK", "PERCENT", "LEFT_TRANSFER", "LESS", "LESS_OR_EQUAL", "EQUAL", 
+			"GREATER_OR_EQUAL", "GREATER", "SEMICOLON", "SINGLE_LINE_COMMENT", "MULTILINE_COMMENT"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -276,6 +278,23 @@ public class FlarscriptParser extends Parser {
 		public TerminalNode RPAREN() { return getToken(FlarscriptParser.RPAREN, 0); }
 		public BracketExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 	}
+	public static class ComparsionExpressionContext extends ExpressionContext {
+		public ExpressionContext left;
+		public Token operator;
+		public ExpressionContext right;
+		public List<ExpressionContext> expression() {
+			return getRuleContexts(ExpressionContext.class);
+		}
+		public ExpressionContext expression(int i) {
+			return getRuleContext(ExpressionContext.class,i);
+		}
+		public TerminalNode LESS() { return getToken(FlarscriptParser.LESS, 0); }
+		public TerminalNode LESS_OR_EQUAL() { return getToken(FlarscriptParser.LESS_OR_EQUAL, 0); }
+		public TerminalNode EQUAL() { return getToken(FlarscriptParser.EQUAL, 0); }
+		public TerminalNode GREATER() { return getToken(FlarscriptParser.GREATER, 0); }
+		public TerminalNode GREATER_OR_EQUAL() { return getToken(FlarscriptParser.GREATER_OR_EQUAL, 0); }
+		public ComparsionExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
+	}
 	public static class PlusOrMinusExpressionContext extends ExpressionContext {
 		public ExpressionContext left;
 		public Token operator;
@@ -395,7 +414,7 @@ public class FlarscriptParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(45);
+			setState(48);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -403,7 +422,7 @@ public class FlarscriptParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(43);
+					setState(46);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
 					case 1:
@@ -412,7 +431,7 @@ public class FlarscriptParser extends Parser {
 						((MultiplyOrDivideExpressionContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(37);
-						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
+						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
 						setState(38);
 						((MultiplyOrDivideExpressionContext)_localctx).operator = _input.LT(1);
 						_la = _input.LA(1);
@@ -425,7 +444,7 @@ public class FlarscriptParser extends Parser {
 							consume();
 						}
 						setState(39);
-						((MultiplyOrDivideExpressionContext)_localctx).right = expression(3);
+						((MultiplyOrDivideExpressionContext)_localctx).right = expression(4);
 						}
 						break;
 					case 2:
@@ -434,7 +453,7 @@ public class FlarscriptParser extends Parser {
 						((PlusOrMinusExpressionContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(40);
-						if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
+						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
 						setState(41);
 						((PlusOrMinusExpressionContext)_localctx).operator = _input.LT(1);
 						_la = _input.LA(1);
@@ -447,13 +466,35 @@ public class FlarscriptParser extends Parser {
 							consume();
 						}
 						setState(42);
-						((PlusOrMinusExpressionContext)_localctx).right = expression(2);
+						((PlusOrMinusExpressionContext)_localctx).right = expression(3);
+						}
+						break;
+					case 3:
+						{
+						_localctx = new ComparsionExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						((ComparsionExpressionContext)_localctx).left = _prevctx;
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
+						setState(43);
+						if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
+						setState(44);
+						((ComparsionExpressionContext)_localctx).operator = _input.LT(1);
+						_la = _input.LA(1);
+						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << LESS) | (1L << LESS_OR_EQUAL) | (1L << EQUAL) | (1L << GREATER_OR_EQUAL) | (1L << GREATER))) != 0)) ) {
+							((ComparsionExpressionContext)_localctx).operator = (Token)_errHandler.recoverInline(this);
+						}
+						else {
+							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+							_errHandler.reportMatch(this);
+							consume();
+						}
+						setState(45);
+						((ComparsionExpressionContext)_localctx).right = expression(2);
 						}
 						break;
 					}
 					} 
 				}
-				setState(47);
+				setState(50);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
 			}
@@ -486,7 +527,7 @@ public class FlarscriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(48);
+			setState(51);
 			_la = _input.LA(1);
 			if ( !(_la==NEWLINE || _la==SEMICOLON) ) {
 			_errHandler.recoverInline(this);
@@ -519,49 +560,53 @@ public class FlarscriptParser extends Parser {
 	private boolean expression_sempred(ExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 2);
+			return precpred(_ctx, 3);
 		case 1:
+			return precpred(_ctx, 2);
+		case 2:
 			return precpred(_ctx, 1);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u00133\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001\u00186\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0001\u0000\u0001\u0000\u0001"+
 		"\u0000\u0004\u0000\f\b\u0000\u000b\u0000\f\u0000\r\u0003\u0000\u0010\b"+
 		"\u0000\u0005\u0000\u0012\b\u0000\n\u0000\f\u0000\u0015\t\u0000\u0001\u0001"+
 		"\u0001\u0001\u0001\u0001\u0001\u0001\u0003\u0001\u001b\b\u0001\u0001\u0002"+
 		"\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002"+
 		"\u0003\u0002$\b\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002"+
-		"\u0001\u0002\u0001\u0002\u0005\u0002,\b\u0002\n\u0002\f\u0002/\t\u0002"+
-		"\u0001\u0003\u0001\u0003\u0001\u0003\u0000\u0001\u0004\u0004\u0000\u0002"+
-		"\u0004\u0006\u0000\u0005\u0001\u0000\u0003\u0004\u0001\u0000\u0005\u0007"+
-		"\u0001\u0000\r\u000f\u0001\u0000\u000b\f\u0002\u0000\u0001\u0001\u0011"+
-		"\u00116\u0000\u0013\u0001\u0000\u0000\u0000\u0002\u001a\u0001\u0000\u0000"+
-		"\u0000\u0004#\u0001\u0000\u0000\u0000\u00060\u0001\u0000\u0000\u0000\b"+
-		"\u000f\u0003\u0002\u0001\u0000\t\u0010\u0005\u0000\u0000\u0001\n\f\u0003"+
-		"\u0006\u0003\u0000\u000b\n\u0001\u0000\u0000\u0000\f\r\u0001\u0000\u0000"+
-		"\u0000\r\u000b\u0001\u0000\u0000\u0000\r\u000e\u0001\u0000\u0000\u0000"+
-		"\u000e\u0010\u0001\u0000\u0000\u0000\u000f\t\u0001\u0000\u0000\u0000\u000f"+
-		"\u000b\u0001\u0000\u0000\u0000\u0010\u0012\u0001\u0000\u0000\u0000\u0011"+
-		"\b\u0001\u0000\u0000\u0000\u0012\u0015\u0001\u0000\u0000\u0000\u0013\u0011"+
-		"\u0001\u0000\u0000\u0000\u0013\u0014\u0001\u0000\u0000\u0000\u0014\u0001"+
-		"\u0001\u0000\u0000\u0000\u0015\u0013\u0001\u0000\u0000\u0000\u0016\u001b"+
-		"\u0003\u0004\u0002\u0000\u0017\u0018\u0005\b\u0000\u0000\u0018\u0019\u0005"+
-		"\u0010\u0000\u0000\u0019\u001b\u0003\u0004\u0002\u0000\u001a\u0016\u0001"+
-		"\u0000\u0000\u0000\u001a\u0017\u0001\u0000\u0000\u0000\u001b\u0003\u0001"+
-		"\u0000\u0000\u0000\u001c\u001d\u0006\u0002\uffff\uffff\u0000\u001d\u001e"+
-		"\u0005\t\u0000\u0000\u001e\u001f\u0003\u0004\u0002\u0000\u001f \u0005"+
-		"\n\u0000\u0000 $\u0001\u0000\u0000\u0000!$\u0007\u0000\u0000\u0000\"$"+
-		"\u0007\u0001\u0000\u0000#\u001c\u0001\u0000\u0000\u0000#!\u0001\u0000"+
-		"\u0000\u0000#\"\u0001\u0000\u0000\u0000$-\u0001\u0000\u0000\u0000%&\n"+
-		"\u0002\u0000\u0000&\'\u0007\u0002\u0000\u0000\',\u0003\u0004\u0002\u0003"+
-		"()\n\u0001\u0000\u0000)*\u0007\u0003\u0000\u0000*,\u0003\u0004\u0002\u0002"+
-		"+%\u0001\u0000\u0000\u0000+(\u0001\u0000\u0000\u0000,/\u0001\u0000\u0000"+
-		"\u0000-+\u0001\u0000\u0000\u0000-.\u0001\u0000\u0000\u0000.\u0005\u0001"+
-		"\u0000\u0000\u0000/-\u0001\u0000\u0000\u000001\u0007\u0004\u0000\u0000"+
-		"1\u0007\u0001\u0000\u0000\u0000\u0007\r\u000f\u0013\u001a#+-";
+		"\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0005\u0002"+
+		"/\b\u0002\n\u0002\f\u00022\t\u0002\u0001\u0003\u0001\u0003\u0001\u0003"+
+		"\u0000\u0001\u0004\u0004\u0000\u0002\u0004\u0006\u0000\u0006\u0001\u0000"+
+		"\u0003\u0004\u0001\u0000\u0005\u0007\u0001\u0000\r\u000f\u0001\u0000\u000b"+
+		"\f\u0001\u0000\u0011\u0015\u0002\u0000\u0001\u0001\u0016\u0016:\u0000"+
+		"\u0013\u0001\u0000\u0000\u0000\u0002\u001a\u0001\u0000\u0000\u0000\u0004"+
+		"#\u0001\u0000\u0000\u0000\u00063\u0001\u0000\u0000\u0000\b\u000f\u0003"+
+		"\u0002\u0001\u0000\t\u0010\u0005\u0000\u0000\u0001\n\f\u0003\u0006\u0003"+
+		"\u0000\u000b\n\u0001\u0000\u0000\u0000\f\r\u0001\u0000\u0000\u0000\r\u000b"+
+		"\u0001\u0000\u0000\u0000\r\u000e\u0001\u0000\u0000\u0000\u000e\u0010\u0001"+
+		"\u0000\u0000\u0000\u000f\t\u0001\u0000\u0000\u0000\u000f\u000b\u0001\u0000"+
+		"\u0000\u0000\u0010\u0012\u0001\u0000\u0000\u0000\u0011\b\u0001\u0000\u0000"+
+		"\u0000\u0012\u0015\u0001\u0000\u0000\u0000\u0013\u0011\u0001\u0000\u0000"+
+		"\u0000\u0013\u0014\u0001\u0000\u0000\u0000\u0014\u0001\u0001\u0000\u0000"+
+		"\u0000\u0015\u0013\u0001\u0000\u0000\u0000\u0016\u001b\u0003\u0004\u0002"+
+		"\u0000\u0017\u0018\u0005\b\u0000\u0000\u0018\u0019\u0005\u0010\u0000\u0000"+
+		"\u0019\u001b\u0003\u0004\u0002\u0000\u001a\u0016\u0001\u0000\u0000\u0000"+
+		"\u001a\u0017\u0001\u0000\u0000\u0000\u001b\u0003\u0001\u0000\u0000\u0000"+
+		"\u001c\u001d\u0006\u0002\uffff\uffff\u0000\u001d\u001e\u0005\t\u0000\u0000"+
+		"\u001e\u001f\u0003\u0004\u0002\u0000\u001f \u0005\n\u0000\u0000 $\u0001"+
+		"\u0000\u0000\u0000!$\u0007\u0000\u0000\u0000\"$\u0007\u0001\u0000\u0000"+
+		"#\u001c\u0001\u0000\u0000\u0000#!\u0001\u0000\u0000\u0000#\"\u0001\u0000"+
+		"\u0000\u0000$0\u0001\u0000\u0000\u0000%&\n\u0003\u0000\u0000&\'\u0007"+
+		"\u0002\u0000\u0000\'/\u0003\u0004\u0002\u0004()\n\u0002\u0000\u0000)*"+
+		"\u0007\u0003\u0000\u0000*/\u0003\u0004\u0002\u0003+,\n\u0001\u0000\u0000"+
+		",-\u0007\u0004\u0000\u0000-/\u0003\u0004\u0002\u0002.%\u0001\u0000\u0000"+
+		"\u0000.(\u0001\u0000\u0000\u0000.+\u0001\u0000\u0000\u0000/2\u0001\u0000"+
+		"\u0000\u00000.\u0001\u0000\u0000\u000001\u0001\u0000\u0000\u00001\u0005"+
+		"\u0001\u0000\u0000\u000020\u0001\u0000\u0000\u000034\u0007\u0005\u0000"+
+		"\u00004\u0007\u0001\u0000\u0000\u0000\u0007\r\u000f\u0013\u001a#.0";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

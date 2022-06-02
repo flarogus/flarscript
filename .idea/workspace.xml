@@ -4,22 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a5d2470-d149-47f8-a717-ade7ac630d5d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/executor/FlarscriptExecutor.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flarscript/src/test/kotlin/BehaviourTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="1a5d2470-d149-47f8-a717-ade7ac630d5d" name="Changes" comment="flarscript can now be executed.">
+      <change afterPath="$PROJECT_DIR$/interpreter-cli/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/interpreter-cli/src/main/kotlin/InteractiveInterpreter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/interpreter-cli/src/main/kotlin/Launcher.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/FlarscriptParseResult.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/FlarscriptParseResult.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/executor/FlarscriptExecutor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/executor/FlarscriptExecutor.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/AbstractTreeNodes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/AbstractTreeNodes.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/TreeConverters.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/TreeConverters.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flarscript/src/test/kotlin/TreeTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/test/kotlin/TreeTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/FlarscriptLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/FlarscriptLexer.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/FlarscriptLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/FlarscriptLexer.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grammar/FlarscriptParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/FlarscriptParser.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptLexer.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptLexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptLexer.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.interp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParserBaseListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParserBaseVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParserListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParserVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,8 +84,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Script" />
-        <option value="Kotlin File" />
         <option value="Kotlin Object" />
+        <option value="Kotlin File" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -101,28 +105,30 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "jdk.selected.JAVA_MODULE": "16",
-    "last_opened_file_path": "/data/data/com.termux/files/home/projects/flarscript/grammar/src/main/java",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "inlay.hints"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;16&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/data/data/com.termux/files/home/projects/flarscript/grammar/src/main/java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Kotlin&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "ANTLRv4"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;kotlin&quot;,
+      &quot;ANTLRv4&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/grammar/src/main/java" />
@@ -130,11 +136,14 @@
       <recent name="$PROJECT_DIR$/flarscript" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
+    <key name="CreateKotlinClassDialog.RecentsKey">
+      <recent name="flarscript.cli" />
+    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.BehaviourTest.a simple script prints the correct result (1)">
+  <component name="RunManager" selected="Kotlin.LauncherKt">
     <configuration name="BehaviourTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -248,13 +257,19 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="LauncherKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="flarscript.cli.LauncherKt" />
+      <module name="flarscript.interpreter-cli.main" />
+      <shortenClasspath name="NONE" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.LauncherKt" />
         <item itemvalue="Gradle.BehaviourTest.a simple script prints the correct result (1)" />
         <item itemvalue="Gradle.BehaviourTest" />
         <item itemvalue="Gradle.TreeTest (1)" />
         <item itemvalue="Gradle.TreeTest.simple tree constructed correctly (1)" />
-        <item itemvalue="Gradle.flarscript [jar]" />
       </list>
     </recent_temporary>
   </component>
@@ -267,6 +282,14 @@
       <option name="presentableId" value="Default" />
       <updated>1653589849784</updated>
     </task>
+    <task id="LOCAL-00001" summary="flarscript can now be executed.">
+      <created>1654030788440</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1654030788441</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -284,7 +307,23 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="flarscript can now be executed." />
+    <option name="LAST_COMMIT_MESSAGE" value="flarscript can now be executed." />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="flarscript.tree.NumberLiteral" memberName="value" />
+        <PinnedItemInfo parentTag="flarscript.tree.EqualExpression" memberName="right" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="JetRunConfigurationType">
+        <watch expression="((java.util.ArrayList)((Flarscript)((FlarscriptExecutor)this).script).statements).get(0)" custom="flarscript.tree.Flarscript,flarscript.executor.FlarscriptExecutor,java.util.ArrayList" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

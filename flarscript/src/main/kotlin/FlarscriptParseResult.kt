@@ -23,8 +23,7 @@ class FlarscriptParseResult(
 			throw IllegalStateException(buildString {
 				append("This flarscript contains errors:\n")
 				errors.forEach {
-					append("\n")
-					append(it.message)
+					append("\n    - ").append(it.message)
 				}
 			})
 		} else if (script == null) {

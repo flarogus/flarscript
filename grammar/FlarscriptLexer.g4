@@ -31,6 +31,13 @@ ASTERISK : '*' ;
 PERCENT : '%' ;
 LEFT_TRANSFER : '<<' ;
 
+// equality operators
+EQUAL : '==' ;
+LESS : '<' ;
+GREATER : '>' ;
+LESS_OR_EQUAL : '<=' ;
+GREATER_OR_EQUAL : '>=' ;
+
 // misc.
 SEMICOLON : ';' ;
 
