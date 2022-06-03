@@ -2,10 +2,11 @@ package flarscript.executor
 
 import flarscript.FlarscriptParseResult
 import flarscript.tree.*
+import flarscript.util.ExecutionException
 import javax.naming.OperationNotSupportedException
 import kotlin.contracts.*
 
-@Suppress("MemberVisibilityCanBePrivate", "NAME_SHADOWING")
+@Suppress("MemberVisibilityCanBePrivate", "NAME_SHADOWING", "OPT_IN_IS_NOT_ENABLED")
 open class FlarscriptExecutor(
 	val script: Flarscript
 ) {
@@ -15,28 +16,36 @@ open class FlarscriptExecutor(
 	)
 
 	/** Executes this script. */
-	fun execute() {
-		script.statements.forEach {
-			it.execute()
-		}
+	fun execute() = script.statements.execute()
+
+	protected fun List<Statement>.execute() = forEach {
+		it.execute()
 	}
+
 
 	protected fun Statement.execute() {
 		when (this) {
 			is PrintStatement -> println(expression.execute())
 			is ExpressionStatement -> expression.execute()
 
-			else -> throw OperationNotSupportedException("Statement $this can not be executed.")
+			is IfStatement -> {
+				val value = condition.execute()
+
+				(value as? Boolean)?.let {
+					if (it) mainBlock.execute() else elseBlock?.execute()
+				} ?: throw ExecutionException(this, "the condition must return a ${value?.simpleName()} was returned")
+			}
+
+			is ErrorStatement -> throw ExecutionException(this, "unreported parse error: statement '${text}' could not be parsed")
 		}
 	}
 
 	protected fun Expression.execute(): Any? = when (this) {
-		is NumberLiteral -> value
-		is StringLiteral -> value
+		is Literal<*> -> value
 		is BinaryExpression -> execute()
 		is BracketExpression -> expression.execute()
 
-		else -> throw OperationNotSupportedException("Expression $this can not be executed.")
+		is ErrorExpression -> throw ExecutionException(this, "Unreported parse error: expression '${text}' could not be parsed")
 	}
 
 	protected fun BinaryExpression.execute(): Any? {
@@ -78,25 +87,26 @@ open class FlarscriptExecutor(
 		return if (this is EqualExpression) {
 			left == right
 		} else {
-			onlyNumbers(left, right, "comparsion") { _, _ -> }
+			onlyNumbers(left, right, "comparison") { _, _ -> }
 
 			when (this) {
 				is LessExpression -> left < right
 				is GreaterExpression -> left > right
 				is LessOrEqualExpression -> left <= right
 				is GreaterOrEqualExpression -> left >= right
-				else -> throw OperationNotSupportedException(simpleName()) // normally unreachable
+
+				else -> throw ExecutionException(this, "operation not implemented: ${simpleName()}") // normally unreachable
 			}
 		}
 	}
 
-	private fun throwNotSupported(left: Any?, right: Any?, operation: String): Nothing {
-		throw OperationNotSupportedException("Operation \"$operation\" is not supported with operand types ${left.simpleName()} and ${right.simpleName()}")
+	private fun Node.throwNotSupported(left: Any?, right: Any?, operation: String): Nothing {
+		throw ExecutionException(this, "operation \"$operation\" is not supported with operand types ${left.simpleName()} and ${right.simpleName()}")
 	}
 
-	/** Executes the block if both operands are doubles or throws [OperationNotSupportedException] otherwise. */
+	/** Executes the block if both operands are doubles or throws [ExecutionException] otherwise. */
 	@OptIn(ExperimentalContracts::class)
-	private inline fun <T> onlyNumbers(
+	private inline fun <T> Node.onlyNumbers(
 		left: Any?,
 		right: Any?,
 		operation: String,

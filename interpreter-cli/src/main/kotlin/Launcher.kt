@@ -19,6 +19,7 @@ fun main(vararg args: String) {
 	if (file == null) {
 		InteractiveInterpreter(System.`in`).launch()
 	} else {
+		// TODO test this
 		val script = if (file == "-") {
 			System.`in`
 		} else {

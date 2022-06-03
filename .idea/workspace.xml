@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a5d2470-d149-47f8-a717-ade7ac630d5d" name="Changes" comment="flarscript can now be executed.">
-      <change afterPath="$PROJECT_DIR$/interpreter-cli/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interpreter-cli/src/main/kotlin/InteractiveInterpreter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interpreter-cli/src/main/kotlin/Launcher.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="1a5d2470-d149-47f8-a717-ade7ac630d5d" name="Changes" comment="CLI Interface + comparison expressions">
+      <change afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/util/ExecutionException.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/util/ParseException.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/util/ScriptErrors.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/FlarscriptFacade.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/FlarscriptFacade.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/FlarscriptParseResult.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/FlarscriptParseResult.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/executor/FlarscriptExecutor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/executor/FlarscriptExecutor.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/AbstractTreeNodes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/AbstractTreeNodes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/TreeConverters.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/TreeConverters.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/TreeConverters.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/FlarscriptConverter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grammar/FlarscriptLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/FlarscriptLexer.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grammar/FlarscriptLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/FlarscriptLexer.tokens" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grammar/FlarscriptParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/FlarscriptParser.g4" afterDir="false" />
@@ -23,7 +23,7 @@
       <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.interp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter-cli/src/main/kotlin/Launcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter-cli/src/main/kotlin/Launcher.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +97,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="29iJB1N53G7v53dFGFwjR8WhtjT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -289,7 +289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654030788441</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="CLI Interface + comparison expressions">
+      <created>1654164747529</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1654164747530</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -310,9 +317,18 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="flarscript can now be executed." />
-    <option name="LAST_COMMIT_MESSAGE" value="flarscript can now be executed." />
+    <MESSAGE value="CLI Interface + comparison expressions" />
+    <option name="LAST_COMMIT_MESSAGE" value="CLI Interface + comparison expressions" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="flarscript.tree.NumberLiteral" memberName="value" />
