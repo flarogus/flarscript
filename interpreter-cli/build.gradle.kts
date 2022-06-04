@@ -9,7 +9,20 @@ repositories {
 }
 
 dependencies {
+	implementation(kotlin("stdlib-jdk8"))
+
 	implementation(project(":flarscript"))
+}
+
+tasks.jar {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+	manifest {
+		attributes["Main-Class"] = "flarscript.cli.LauncherKt"
+	}
+
+	from(*configurations.runtimeClasspath.files.map { if (it.isDirectory()) it else zipTree(it) }.toTypedArray())
+
 }
 
 tasks.getByName<Test>("test") {
