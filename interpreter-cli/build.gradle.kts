@@ -15,6 +15,9 @@ dependencies {
 }
 
 tasks.jar {
+	dependsOn(":flarscript:jar")
+	dependsOn(":grammar:jar")
+
 	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
 	manifest {
@@ -30,5 +33,6 @@ tasks.getByName<Test>("test") {
 }
 
 tasks.withType<KotlinCompile> {
+	dependsOn(":flarscript:compileKotlin")
 	kotlinOptions.jvmTarget = "1.8"
 }

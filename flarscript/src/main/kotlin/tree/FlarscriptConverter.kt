@@ -62,7 +62,7 @@ class FlarscriptConverter {
 			GREATER -> GreaterExpression(left.toAst(), right.toAst())
 			LESS_OR_EQUAL -> LessOrEqualExpression(left.toAst(), right.toAst())
 			GREATER_OR_EQUAL -> GreaterOrEqualExpression(left.toAst(), right.toAst())
-			else -> TODO() // unreachable
+			else -> TODO(operator.text + operator.type) // unreachable
 		}
 
 		is FlarscriptParser.BracketExpressionContext -> BracketExpression(expression().toAst())

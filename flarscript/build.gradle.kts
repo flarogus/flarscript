@@ -26,5 +26,6 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile> {
+	dependsOn(":grammar:compileJava")
 	kotlinOptions.jvmTarget = "1.8"
 }
