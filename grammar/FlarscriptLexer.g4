@@ -52,7 +52,7 @@ GREATER_OR_EQUAL : '>=' ;
 SEMICOLON : ';' ;
 
 ID : (
-	[a-zA-Z_][a-zA-Z0-9_\-#]*?
+	[a-zA-Z_][a-zA-Z0-9_\-#]*
 	| '~' (~('\n' | '\r'))+? '~'
 ) ;
 

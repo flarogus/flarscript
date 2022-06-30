@@ -13,6 +13,8 @@ data class Flarscript(
 
 // literals
 sealed class Literal<T>(val value: T) : Expression {
+	override fun equals(other: Any?) = if (other is Literal<*>) value == other.value else super.equals(other)
+
 	override fun toString() = "<literal: $value>"
 }
 

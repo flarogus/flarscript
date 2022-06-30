@@ -5,7 +5,10 @@ import flarscript.grammar.FlarscriptParser
 import flarscript.util.ConversionError
 import org.antlr.v4.runtime.ParserRuleContext
 
-class FlarscriptConverter {
+class FlarscriptConverter(
+	val context: FlarscriptParser.FlarscriptContext
+) {
+	/** Errors occurred during parsing */
 	val errors = ArrayList<ConversionError>()
 
 	/**
@@ -13,7 +16,7 @@ class FlarscriptConverter {
 	 *
 	 * Any errors occurred during the conversion are saved to [errors].
 	 */
-	fun convert(context: FlarscriptParser.FlarscriptContext): Flarscript {
+	fun convert(): Flarscript {
 		errors.clear()
 
 		return context.toAst()
@@ -89,5 +92,9 @@ class FlarscriptConverter {
 
 	private fun ParserRuleContext.errorExpression(description: String) = error(description).let {
 		ErrorExpression(this)
+	}
+
+	private inline fun <reified T> T.asList() = buildList<T> {
+		add(this@asList)
 	}
 }

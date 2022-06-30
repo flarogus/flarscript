@@ -5,25 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a5d2470-d149-47f8-a717-ade7ac630d5d" name="Changes" comment="CLI Interface + comparison expressions">
-      <change afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/util/ExecutionException.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/util/ParseException.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/util/ScriptErrors.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinScripting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinScripting.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/FlarscriptFacade.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/FlarscriptFacade.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/FlarscriptParseResult.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/FlarscriptParseResult.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/executor/FlarscriptExecutor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/executor/FlarscriptExecutor.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/AbstractTreeNodes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/AbstractTreeNodes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/TreeConverters.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/FlarscriptConverter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/FlarscriptConverter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/flarscript/src/main/kotlin/tree/FlarscriptConverter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grammar/FlarscriptLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/FlarscriptLexer.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar/FlarscriptLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/FlarscriptLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar/FlarscriptParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/FlarscriptParser.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/src/main/java/flarscript/grammar/FlarscriptParser.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter-cli/src/main/kotlin/Launcher.kt" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter-cli/src/main/kotlin/Launcher.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +109,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Kotlin&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.language.Kotlin.scripting&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
@@ -143,7 +132,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.LauncherKt">
+  <component name="RunManager" selected="Kotlin script.ide-scripting.kts">
     <configuration name="BehaviourTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -213,63 +202,32 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TreeTest.simple tree constructed correctly (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":flarscript:test" />
-            <option value="--tests" />
-            <option value="&quot;flarscript.TreeTest.simple tree constructed correctly&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="flarscript [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="jar" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="LauncherKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="flarscript.cli.LauncherKt" />
       <module name="flarscript.interpreter-cli.main" />
       <shortenClasspath name="NONE" />
       <method v="2" />
     </configuration>
+    <configuration name="ide-scripting.kts" type="KotlinStandaloneScriptRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <module name="flarscript" />
+      <shortenClasspath name="NONE" />
+      <option name="filePath" value="$PROJECT_DIR$/../../.config/JetBrains/IdeaIC2022.1/consoles/ide/ide-scripting.kts" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.BehaviourTest" />
+      <item itemvalue="Gradle.BehaviourTest.a simple script prints the correct result (1)" />
+      <item itemvalue="Gradle.TreeTest (1)" />
+      <item itemvalue="Kotlin.LauncherKt" />
+      <item itemvalue="Kotlin script.ide-scripting.kts" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin script.ide-scripting.kts" />
         <item itemvalue="Kotlin.LauncherKt" />
         <item itemvalue="Gradle.BehaviourTest.a simple script prints the correct result (1)" />
         <item itemvalue="Gradle.BehaviourTest" />
         <item itemvalue="Gradle.TreeTest (1)" />
-        <item itemvalue="Gradle.TreeTest.simple tree constructed correctly (1)" />
       </list>
     </recent_temporary>
   </component>

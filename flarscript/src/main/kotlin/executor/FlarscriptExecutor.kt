@@ -22,7 +22,6 @@ open class FlarscriptExecutor(
 		it.execute()
 	}
 
-
 	protected fun Statement.execute() {
 		when (this) {
 			is PrintStatement -> println(expression.execute())
@@ -33,7 +32,7 @@ open class FlarscriptExecutor(
 
 				(value as? Boolean)?.let {
 					if (it) mainBlock.execute() else elseBlock?.execute()
-				} ?: throw ExecutionException(this, "the condition must return a ${value?.simpleName()} was returned")
+				} ?: throw ExecutionException(this, "if condition must return a Boolean, but a ${value?.simpleName()} was returned")
 			}
 
 			is ErrorStatement -> throw ExecutionException(this, "unreported parse error: statement '${text}' could not be parsed")
